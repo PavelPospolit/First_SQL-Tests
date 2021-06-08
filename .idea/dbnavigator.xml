@@ -25,18 +25,8 @@
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
     <loaded-nodes>
-      <connection connection-id="62406fbb-bba4-4602-bec2-cdb1a8c363c5">
-        <schema name="HumanResources" object-types="table, view, procedure, function" />
-        <schema name="Person" object-types="table, view, procedure, function" />
-        <schema name="Test" object-types="table, view, procedure, function" />
-      </connection>
       <connection connection-id="ddad47e0-75b2-4dae-b417-fd5a819350d8">
-        <schema name="INFORMATION_SCHEMA" object-types="table, view, procedure, function" />
-        <schema name="db_accessadmin" object-types="table, view, procedure, function" />
-        <schema name="db_backupoperator" object-types="table, view, procedure, function" />
-        <schema name="dbo" object-types="table, view, procedure, function, constraint, index, column" />
-        <schema name="guest" object-types="table, view, procedure, function" />
-        <schema name="sys" object-types="table, view, procedure, function" />
+        <schema name="dbo" object-types="table, view" />
       </connection>
     </loaded-nodes>
   </component>

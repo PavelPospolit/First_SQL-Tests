@@ -10,43 +10,45 @@ import java.util.concurrent.ThreadLocalRandom;
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 
 public class Driver {
-    public void SQL_starten() {
-
-
-    }
 
     public static void main(String[] args) {
-        String email = "p%";
-        String PW = "%1";
 
-        // Create datasource.
         String connectionUrl = "jdbc:sqlserver://BE1BD320:1433;instance=SQLEXPRESS;databaseName=Reservierungssystem;user=Test;password=Test";
 
         try (Connection con = DriverManager.getConnection(connectionUrl); Statement stmt = con.createStatement();) {
 
+            /*PreparedStatement st = con.prepareStatement("alter table Reservations nocheck constraint all delete from Employees WHERE Emailaddress like 'jan%' alter table Reservations check constraint all");
+            st.executeUpdate();*/
 
-            String SQL = "SELECT TOP 10 * FROM dbo.Employees where Emailadress like '"+email+"' AND Employee_Password like '"+
-                    PW + "'";
+            String insert = "insert into Employees values(?,?,?)";
+            PreparedStatement insertstmt = con.prepareStatement(insert);
+            insertstmt.setInt(1, 145156);
+            insertstmt.setString(2, "janik.sigmund@telekom.de");
+            insertstmt.setString(3, "Password");
+            insertstmt.execute();
+
+
+            String SQL = "SELECT TOP 10 * FROM dbo.Employees";
             ResultSet rs = stmt.executeQuery(SQL);
-            if(rs.next())
-            // Iterate through the data in the result set and display it.
             while (rs.next()) {
-
-                System.out.println(rs.getString("EmployeeID") + " " + rs.getString("Emailadress")
+                System.out.println(rs.getString("EmployeeID") + " " + rs.getString("Emailaddress")
                         + " " + rs.getString("Employee_Password"));
-                if(rs.getString("Employee_Password").equals("Password1")){
-                    System.out.println("YES GO GO");
-                }
-                else System.out.println("no no");
             }
-            if(!rs.next()){
-                System.out.println("2323");
-            }
+
         }
-        // Handle any errors that may have occurred.
         catch (SQLException e) {
             e.printStackTrace();
         }
 
     }
+    /*public static void DeleteRow (String Name){
+        try{
+            Connection connection = DriverManager.getConnection("jdbc:sqlserver://BE1BD320:1433;instance=SQLEXPRESS;databaseName=Reservierungssystem;user=Test;password=Test");
+
+            PreparedStatement
+        }
+        catch (Exception e){
+            System.out.println(e);;
+        }
+    }*/
 }
